@@ -1,0 +1,161 @@
+To remove a file or dir from only github remote repo but not on your filesystem
+use : git rm --cached <filename>
+or 	  git rm -r --cached <dirname>
+
+Eg. To remove online_status and chatb directories from 
+g/gstudio/gnowsys-ndf/gnowsys_ndf :
+
+ishem@ishem-Inspiron-5521:~/g/gstudio/gnowsys-ndf/gnowsys_ndf$ ls
+benchmarker  example-sqlite3.db  factory_type.pyc  __init__.pyc  ndf           
+online_status  settings.pyc  wsgi.py
+chatb        factory_type.py     __init__.py       mobwrite      notification  
+settings.py    urls.py       wsgi.pyc
+
+ishem@ishem-Inspiron-5521:~/g/gstudio/gnowsys-ndf/gnowsys_ndf$ git status 
+# On branch mongokit
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   online_status/models.py
+#	modified:   online_status/templates/online_status/online_users.html
+#	modified:   online_status/urls.py
+#	modified:   online_status/views.py
+#	modified:   settings.py
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	chatb/etc/nginx/chatb.org.crt
+#	chatb/etc/nginx/chatb.org.key
+#	ndf/static/ndf/css/online_status/
+#	ndf/static/ndf/js/online_status/
+#	ndf/static/online_status/
+#	ndf/urls/ajax-urls.py.BASE.15198.py~
+#	ndf/urls/ajax-urls.py.LOCAL.15198.py~
+#	ndf/urls/ajax-urls.py.orig
+#	ndf/views/ajax_views.py.orig
+#	online_status/removethis_models.py
+#	online_status/templates/online_status/demo.html
+#	online_status/templates/online_status/demo2.html
+#	online_status/templates/online_status/new_meeting.html
+#	online_status/templates/online_status/online_users_removethis.html
+no changes added to commit (use "git add" and/or "git commit -a")
+
+ishem@ishem-Inspiron-5521:~/g/gstudio/gnowsys-ndf/gnowsys_ndf$ ls
+benchmarker  example-sqlite3.db  factory_type.pyc  __init__.pyc  ndf           
+online_status  settings.pyc  wsgi.py
+chatb        factory_type.py     __init__.py       mobwrite      notification  
+settings.py    urls.py       wsgi.pyc
+
+ishem@ishem-Inspiron-5521:~/g/gstudio/gnowsys-ndf/gnowsys_ndf$ cd 
+online_status/
+ishem@ishem-Inspiron-5521:~/g/gstudio/gnowsys-ndf/gnowsys_ndf/online_status$ ls
+__init__.py   locale         middleware.pyc  models.pyc            status.py   
+templates     tests.py  urls.pyc  utils.pyc  views.pyc
+__init__.pyc  middleware.py  models.py       removethis_models.py  status.pyc  
+templatetags  urls.py   utils.py  views.py
+ishem@ishem-Inspiron-5521:~/g/gstudio/gnowsys-ndf/gnowsys_ndf/online_status$ cd 
+..
+
+
+ishem@ishem-Inspiron-5521:~/g/gstudio/gnowsys-ndf/gnowsys_ndf$ git rm -r 
+--cached online_status/
+rm 'gnowsys-ndf/gnowsys_ndf/online_status/__init__.py'
+rm 'gnowsys-ndf/gnowsys_ndf/online_status/locale/pl/LC_MESSAGES/django.po'
+rm 'gnowsys-ndf/gnowsys_ndf/online_status/middleware.py'
+rm 'gnowsys-ndf/gnowsys_ndf/online_status/models.py'
+rm 'gnowsys-ndf/gnowsys_ndf/online_status/status.py'
+rm 'gnowsys-ndf/gnowsys_ndf/online_status/templates/online_status/example.html'
+rm 
+'gnowsys-ndf/gnowsys_ndf/online_status/templates/online_status/gstudio_online.html'
+rm 
+'gnowsys-ndf/gnowsys_ndf/online_status/templates/online_status/online_users.html'
+rm 
+'gnowsys-ndf/gnowsys_ndf/online_status/templates/online_status/user_status.html'
+rm 'gnowsys-ndf/gnowsys_ndf/online_status/templatetags/__init__.py'
+rm 'gnowsys-ndf/gnowsys_ndf/online_status/templatetags/online_status_tags.py'
+rm 'gnowsys-ndf/gnowsys_ndf/online_status/templatetags/status_format.py'
+rm 'gnowsys-ndf/gnowsys_ndf/online_status/tests.py'
+rm 'gnowsys-ndf/gnowsys_ndf/online_status/urls.py'
+rm 'gnowsys-ndf/gnowsys_ndf/online_status/utils.py'
+rm 'gnowsys-ndf/gnowsys_ndf/online_status/views.py'
+ishem@ishem-Inspiron-5521:~/g/gstudio/gnowsys-ndf/gnowsys_ndf$ git status 
+# On branch mongokit
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	deleted:    online_status/__init__.py
+#	deleted:    online_status/locale/pl/LC_MESSAGES/django.po
+#	deleted:    online_status/middleware.py
+#	deleted:    online_status/models.py
+#	deleted:    online_status/status.py
+#	deleted:    online_status/templates/online_status/example.html
+#	deleted:    online_status/templates/online_status/gstudio_online.html
+#	deleted:    online_status/templates/online_status/online_users.html
+#	deleted:    online_status/templates/online_status/user_status.html
+#	deleted:    online_status/templatetags/__init__.py
+#	deleted:    online_status/templatetags/online_status_tags.py
+#	deleted:    online_status/templatetags/status_format.py
+#	deleted:    online_status/tests.py
+#	deleted:    online_status/urls.py
+#	deleted:    online_status/utils.py
+#	deleted:    online_status/views.py
+#
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   settings.py
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	chatb/etc/nginx/chatb.org.crt
+#	chatb/etc/nginx/chatb.org.key
+#	ndf/static/ndf/css/online_status/
+#	ndf/static/ndf/js/online_status/
+#	ndf/static/online_status/
+#	ndf/urls/ajax-urls.py.BASE.15198.py~
+#	ndf/urls/ajax-urls.py.LOCAL.15198.py~
+#	ndf/urls/ajax-urls.py.orig
+#	ndf/views/ajax_views.py.orig
+#	online_status/
+
+
+ishem@ishem-Inspiron-5521:~/g/gstudio/gnowsys-ndf/gnowsys_ndf$ ls
+benchmarker  example-sqlite3.db  factory_type.pyc  __init__.pyc  ndf           
+online_status  settings.pyc  wsgi.py
+chatb        factory_type.py     __init__.py       mobwrite      notification  
+settings.py    urls.py       wsgi.pyc
+
+
+ishem@ishem-Inspiron-5521:~/g/gstudio/gnowsys-ndf/gnowsys_ndf$ git rm -r chatb/
+rm 'gnowsys-ndf/gnowsys_ndf/chatb/__init__.py'
+rm 'gnowsys-ndf/gnowsys_ndf/chatb/chatb'
+rm 'gnowsys-ndf/gnowsys_ndf/chatb/chatb.go'
+rm 'gnowsys-ndf/gnowsys_ndf/chatb/config'
+rm 'gnowsys-ndf/gnowsys_ndf/chatb/etc/init/chatb.conf'
+rm 'gnowsys-ndf/gnowsys_ndf/chatb/etc/nginx/chatb.org'
+rm 'gnowsys-ndf/gnowsys_ndf/chatb/etc/nginx/chatb.org~'
+rm 'gnowsys-ndf/gnowsys_ndf/chatb/models.py'
+rm 'gnowsys-ndf/gnowsys_ndf/chatb/rooms/rooms.go'
+rm 'gnowsys-ndf/gnowsys_ndf/chatb/static/css/style.css'
+rm 'gnowsys-ndf/gnowsys_ndf/chatb/static/favicon.ico'
+rm 'gnowsys-ndf/gnowsys_ndf/chatb/static/index.html'
+rm 'gnowsys-ndf/gnowsys_ndf/chatb/static/js/adapter.js'
+rm 'gnowsys-ndf/gnowsys_ndf/chatb/static/js/chatb.js'
+rm 'gnowsys-ndf/gnowsys_ndf/chatb/static/js/jquery-1.11.0.min.js'
+rm 'gnowsys-ndf/gnowsys_ndf/chatb/static/js/utils.js'
+rm 'gnowsys-ndf/gnowsys_ndf/chatb/static/robots.txt'
+rm 'gnowsys-ndf/gnowsys_ndf/chatb/templates/chatb_index.html'
+rm 'gnowsys-ndf/gnowsys_ndf/chatb/templates/chatb_template.html'
+rm 'gnowsys-ndf/gnowsys_ndf/chatb/tests.py'
+rm 'gnowsys-ndf/gnowsys_ndf/chatb/views.py'
+
+
+
+
+Links : 
+http://stackoverflow.com/questions/1143796/remove-a-file-from-a-git-repository-without-deleting-it-from-the-local-filesyste
+https://help.github.com/articles/ignoring-files

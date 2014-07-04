@@ -1,0 +1,13 @@
+Dropping a database
+
+1.Start mongo shell
+$mongo
+
+2.Show all databases
+>show dbs
+
+3.Switch to db u want to delete
+>use <db-name>
+
+4.Drop current db
+>db.dropDatabase();

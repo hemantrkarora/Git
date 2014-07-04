@@ -1,0 +1,148 @@
+To Sync a fork of a repository to keep it up-to-date with upstream repository ,
+first configure a remote to upstream repo 
+(https://help.github.com/articles/configuring-a-remote-for-a-fork)
+
+
+Reference : https://help.github.com/articles/syncing-a-fork
+
+===================================================================
+
+Example : Original repo is at : 
+https://github.com/gnowledge/gstudio/tree/mongokit
+
+My forked repo is at : https://github.com/hemantrkarora/gstudio
+
+Note that there are 2 branches :
+*master
+*mongokit
+
+and we are currently working on MONGOKIT branch .
+
+$ git remote -v
+origin	https://github.com/hemantrkarora/gstudio.git (fetch)
+origin	https://github.com/hemantrkarora/gstudio.git (push)
+
+
+$ git remote add upstream https://github.com/gnowledge/gstudio.git
+
+
+$ git remote -v
+origin	https://github.com/hemantrkarora/gstudio.git (fetch)
+origin	https://github.com/hemantrkarora/gstudio.git (push)
+upstream	https://github.com/gnowledge/gstudio.git (fetch)
+upstream	https://github.com/gnowledge/gstudio.git (push)
+
+ishem@ishem-Inspiron-5521:~/g/gstudio$ git fetch upstream 
+
+remote: Counting objects: 833, done.
+remote: Compressing objects: 100% (372/372), done.
+remote: Total 833 (delta 550), reused 693 (delta 458)
+Receiving objects: 100% (833/833), 254.28 KiB | 83 KiB/s, done.
+Resolving deltas: 100% (550/550), done.
+From https://github.com/gnowledge/gstudio
+ * [new branch]      master     -> upstream/master
+ * [new branch]      mongokit   -> upstream/mongokit
+
+$ git checkout mongokit (and not master !!)
+
+Switched to branch 'mongokit'
+
+$ git merge upstream/mongokit 
+
+Auto-merging gnowsys-ndf/gnowsys_ndf/settings.py
+Auto-merging gnowsys-ndf/gnowsys_ndf/ndf/urls/__init__.py
+Merge made by the 'recursive' strategy.
+INSTALL                                            |  140 +++---
+gnowsys-ndf/gnowsys_ndf/factory_type.py            |    4 +-
+.../commands/add_fields_to_existing_documents.py   |    7 +
+.../ndf/management/commands/create_themes.py       |   79 ++++
+gnowsys-ndf/gnowsys_ndf/ndf/models.py              |    4 +-
+gnowsys-ndf/gnowsys_ndf/ndf/static/ndf/bower.json  |    3 +-
+.../ndf/static/ndf/css/foundation-skin.css         |   48 +-
+.../ndf/static/ndf/images/ajax-loader-trans.gif    |  Bin 0 -> 8238 bytes
+.../ndf/static/ndf/images/ajax-loader.gif          |  Bin 0 -> 8238 
+bytes
+.../gnowsys_ndf/ndf/static/ndf/scss/_styles.scss   |    6 +
+.../ndf/templates/ndf/adminDashboard.html          |    8 +-
+.../ndf/templates/ndf/adminDashboardCreate.html    |   87 +++-
+.../gnowsys_ndf/ndf/templates/ndf/base.html        |    4 +-
+.../ndf/templates/ndf/collection_ajax_view.html    |    2 +-
+.../gnowsys_ndf/ndf/templates/ndf/course.html      |    2 +-
+.../ndf/templates/ndf/create_batch.html            |    1 -
+.../ndf/templates/ndf/drawer_widget.html           |    4 +-
+.../gnowsys_ndf/ndf/templates/ndf/file.html        |  142 ++----
+.../gnowsys_ndf/ndf/templates/ndf/forum.html       |   17 +-
+.../ndf/templates/ndf/forumdetails.html            |   29 +-
+.../ndf/templates/ndf/gapps_menubar.html           |    2 +-
+.../gnowsys_ndf/ndf/templates/ndf/group.html       |    2 +-
+.../ndf/templates/ndf/groupdashboard.html          |   
+85 ++--
+.../ndf/templates/ndf/invite_users.html            |    
+6 +-
+.../ndf/templates/ndf/node_ajax_view.html          |  
+196 +++++---
+.../ndf/templates/ndf/node_details_base.html       |    
+2 +
+.../ndf/templates/ndf/node_edit_base.html          |   
+13 +-
+.../ndf/templates/ndf/observations_map.html        |  490 +++++++++++---------
+.../gnowsys_ndf/ndf/templates/ndf/page_list.html   |   22 +-
+.../gnowsys_ndf/ndf/templates/ndf/task.html        |  121 +++++
+.../ndf/templates/ndf/task_create_edit.html        |  223 +++++++++
+.../ndf/templates/ndf/task_details.html            |  176 +++++++
+.../gnowsys_ndf/ndf/templates/ndf/theme.html       |   15 +-
+.../ndf/templates/ndf/theme_drawer.html            |    2 +-
+.../ndf/templates/ndf/translation_page.html        |   20 +-
+.../ndf/templates/ndf/userDashboard.html           |  123 +++--
+.../ndf/templates/ndf/version_page.html            |   69 ++-
+.../gnowsys_ndf/ndf/templatetags/ndf_tags.py       |  209 ++++++---
+gnowsys-ndf/gnowsys_ndf/ndf/urls/__init__.py       |   43 +-
+gnowsys-ndf/gnowsys_ndf/ndf/urls/ajax-urls.py      |    4 +-
+gnowsys-ndf/gnowsys_ndf/ndf/urls/task.py           |    9 +
+gnowsys-ndf/gnowsys_ndf/ndf/urls/user.py           |    2 +-
+.../ndf/views/adminDesignerDashboard.py            
+|   28 +-
+gnowsys-ndf/gnowsys_ndf/ndf/views/ajax_views.py    |   35 ++
+gnowsys-ndf/gnowsys_ndf/ndf/views/batch.py         |    5 +-
+gnowsys-ndf/gnowsys_ndf/ndf/views/browse_topic.py  |   64 ++-
+gnowsys-ndf/gnowsys_ndf/ndf/views/file.py          |   31 +-
+gnowsys-ndf/gnowsys_ndf/ndf/views/forum.py         |   45 +-
+gnowsys-ndf/gnowsys_ndf/ndf/views/group.py         |   11 +-
+gnowsys-ndf/gnowsys_ndf/ndf/views/observation.py   |  168 +++----
+gnowsys-ndf/gnowsys_ndf/ndf/views/page.py          |    7 +-
+gnowsys-ndf/gnowsys_ndf/ndf/views/task.py          |  304 ++++++++++++
+gnowsys-ndf/gnowsys_ndf/ndf/views/userDashboard.py |   35 +-
+gnowsys-ndf/gnowsys_ndf/settings.py                |    5 +-
+54 files changed, 2258 
+insertions(+), 901 
+deletions(-)
+create mode 100644 
+gnowsys-ndf/gnowsys_ndf/ndf/management/commands/create_themes.py
+create mode 100644 
+gnowsys-ndf/gnowsys_ndf/ndf/static/ndf/images/ajax-loader-trans.gif
+create mode 100644 
+gnowsys-ndf/gnowsys_ndf/ndf/static/ndf/images/ajax-loader.gif
+create mode 
+100644 
+gnowsys-ndf/gnowsys_ndf/ndf/templates/ndf/task.html
+create mode 
+100644 
+gnowsys-ndf/gnowsys_ndf/ndf/templates/ndf/task_create_edit.html
+create mode 
+100644 
+gnowsys-ndf/gnowsys_ndf/ndf/templates/ndf/task_details.html
+create mode 
+100644 
+gnowsys-ndf/gnowsys_ndf/ndf/urls/task.py
+create mode 
+100644 
+gnowsys-ndf/gnowsys_ndf/ndf/views/task.py
+
+$ git status 
+# On branch mongokit
+# Your branch is ahead of 'origin/mongokit' by 125 commits.
+#
+
+$ git push
+
+
