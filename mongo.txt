@@ -11,3 +11,6 @@ $mongo
 
 4.Drop current db
 >db.dropDatabase();
+
+Ref:-http://docs.mongodb.org/v2.2/reference/command/dropDatabase/#dbcmd.dropDatabase
+
